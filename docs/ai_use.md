@@ -10,3 +10,5 @@ changed or rejected. Verify and explain all retained code and claims yourself.
 - **Still to do:** Researcher reviews the data findings, reads the GoEmotions paper, writes personal notes, and verifies the setup before later milestones.
 
 - **Additional work:** Drafted an AI-assisted GoEmotions study note and ML concept guide, copied the whiteboard's operational definitions into `docs/hypotheses.md`, and added blank prompts for researcher-authored predictions and literature notes. No predictions or test results were generated.
+
+- **Additional work:** Implemented and tested the raw-data preparation and text-metric modules, created the processed comment table and panel sample, and added a starter lexicon. The lexicon and manual comment checks remain subject to researcher review.

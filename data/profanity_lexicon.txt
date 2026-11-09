@@ -1,0 +1,18 @@
+# Small, transparent starter lexicon; exact word matches after case/punctuation normalization.
+ass
+bastard
+bitch
+bullshit
+crap
+damn
+damned
+dick
+fuck
+fucked
+fucking
+hell
+motherfucker
+shit
+shitty
+slut
+whore
