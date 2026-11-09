@@ -7,10 +7,13 @@ causes or reveal what an author actually felt.
 
 ## Project status
 
-The project structure and available dataset files are in place. The analysis
-pipeline is not implemented yet. Follow `project_whiteboard.md` one milestone
-at a time; do not run hypothesis tests until `docs/predictions.md` has been
-written by the researcher and committed.
+Data preparation, text metrics, and baseline model code are implemented. The
+P1 exploration notebook and P3 2,000-comment prototype have run. The prototype
+uses only a held-out portion of the training split; full model evaluation,
+out-of-fold scoring, and hypothesis tests have not been run. Follow
+`project_whiteboard.md` one milestone at a time, and do not run hypothesis
+tests until the researcher has written and committed `docs/predictions.md`.
+Researcher-owned tasks are collected in `docs/user_todo.md`.
 
 ## Data
 
@@ -19,16 +22,18 @@ written by the researcher and committed.
 - Collapsed data: `data/processed/`
 - Human-panel data: `data/validation/` (keep private and anonymous)
 
-The Ekman and sentiment mapping files are not currently present in the
-workspace. Add verified copies to `data/simplified/` before relying on those
-groupings; do not infer or recreate them from memory.
+Verified Ekman and sentiment mapping files are in `data/simplified/`.
 
 ## Setup and run
 
 Use Python 3.10 or later. `requirements.txt` pins compatible dependencies for
 Python 3.10–3.13 and Python 3.14+. Install them with
-`python -m pip install -r requirements.txt`. The end-to-end entry point will be
-`main.py` once the pipeline milestones are implemented.
+`python -m pip install -r requirements.txt`. Run `notebooks/explore_data.ipynb`
+for P1 and `notebooks/prototype.ipynb` for the training-only P3 prototype;
+select the project virtual environment as the notebook kernel. `main.py` is
+still a scaffold, not an end-to-end pipeline.
+
+Run the unit tests with `python -m pytest -q`.
 
 See `project_whiteboard.md` for the source of truth, milestones, checks, and
 ethics requirements.

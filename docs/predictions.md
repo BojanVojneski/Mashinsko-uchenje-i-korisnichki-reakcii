@@ -2,6 +2,8 @@
 
 **Researcher-authored:** complete this before running any hypothesis test or
 viewing questionnaire responses, then commit this file before testing.
+See `user_todo.md` for the other researcher-owned items. Do not ask
+AI to fill in these predictions or their rationale.
 
 For each item below, write a prediction, why you expect it, and what result
 would change your mind. These are blank prompts, not AI-generated predictions.

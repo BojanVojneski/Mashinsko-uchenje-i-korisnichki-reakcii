@@ -366,12 +366,12 @@ Commit at the end of every session with a clear message. Tag milestones: `M1-mod
 * Put the real deadline and defense dates at the top of this file.
 * Set up the final repo skeleton, `requirements.txt`, README stub, `.gitignore`, and `docs/log.md`.
 * **G0 checklist:**
-  - [ ] Data downloaded and explored
-  - [ ] Prototype runs end to end
+  - [x] Data downloaded and explored
+  - [x] Prototype runs end to end
   - [ ] Hypotheses and predictions committed
   - [ ] Rubric known, dates in this file
   - [ ] Questionnaire plan approved by teacher/school
-  - [ ] Repo skeleton ready
+  - [x] Repo skeleton ready
 * **Done when:** all G0 boxes are checked.
 
 ---
