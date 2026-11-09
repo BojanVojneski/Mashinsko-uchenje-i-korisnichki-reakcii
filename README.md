@@ -7,13 +7,17 @@ causes or reveal what an author actually felt.
 
 ## Project status
 
-Data preparation, text metrics, and baseline model code are implemented. The
-P1 exploration notebook and P3 2,000-comment prototype have run. The prototype
+Data preparation, text metrics, baseline and comparison model code,
+out-of-fold scoring, and H1-H5 analysis helpers are implemented. The P1
+exploration notebook and P3 2,000-comment prototype have run. The prototype
 uses only a held-out portion of the training split; full model evaluation,
-out-of-fold scoring, and hypothesis tests have not been run. Follow
+out-of-fold scoring on the full master table, and hypothesis tests have not
+been run. The optional questionnaire-analysis module is still a placeholder.
+Follow
 `project_whiteboard.md` one milestone at a time, and do not run hypothesis
 tests until the researcher has written and committed `docs/predictions.md`.
 Researcher-owned tasks are collected in `docs/user_todo.md`.
+These research/planning gates do not block continued implementation of code.
 
 ## Data
 

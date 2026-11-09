@@ -374,6 +374,10 @@ Commit at the end of every session with a clear message. Tag milestones: `M1-mod
   - [x] Repo skeleton ready
 * **Done when:** all G0 boxes are checked.
 
+Code implementation may continue while project-planning items are pending.
+Commit researcher-authored predictions before formal hypothesis tests or
+viewing questionnaire responses; get approval before collecting panel data.
+
 ---
 
 ## 12. Building Stage (B1-B12): step by step
