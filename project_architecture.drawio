@@ -1,0 +1,674 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="1. Big picture" id="page1">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="760" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p1_title" value="Machine Learning and User Reactions: how it all works" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="40" y="15" width="1100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lane1" value="MAIN PIPELINE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;verticalAlign=top;align=left;spacingLeft=10;spacingTop=3;fontStyle=1;fontColor=#666666;fontSize=12;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="20" y="65" width="1650" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lane2" value="HUMAN PANEL STUDY (questionnaire)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;verticalAlign=top;align=left;spacingLeft=10;spacingTop=3;fontStyle=1;fontColor=#666666;fontSize=12;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="20" y="380" width="1650" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_src" value="&lt;b&gt;GoEmotions dataset&lt;/b&gt;&lt;br&gt;raw CSV + simplified TSV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_pred" value="&lt;b&gt;predictions.md&lt;/b&gt;&lt;br&gt;committed BEFORE any test" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="90" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s1" value="&lt;b&gt;① data.py&lt;/b&gt;&lt;br&gt;collapse raw → 1 row per comment (~58k)&lt;br&gt;rater means · soglasnost · hashed author" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="210" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s2" value="&lt;b&gt;② metrics.py&lt;/b&gt;&lt;br&gt;pol · sub (TextBlob)&lt;br&gt;dol (words) · vulg · vulg_any" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="270" y="210" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s3" value="&lt;b&gt;③ model.py&lt;/b&gt;&lt;br&gt;TF-IDF + Logistic Regression&lt;br&gt;train → tune on dev → test once" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="500" y="210" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s4" value="&lt;b&gt;④ Out-of-fold scoring&lt;/b&gt;&lt;br&gt;each comment scored by a model that never saw it" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="730" y="210" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s5" value="&lt;b&gt;⑤ Final scored dataset&lt;/b&gt;&lt;br&gt;28 emotion scores · glavna_emocija · uverenost · razlika · grupa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="960" y="210" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s6" value="&lt;b&gt;⑥ analysis + plots&lt;/b&gt;&lt;br&gt;H1–H5 · V1–V3&lt;br&gt;tests, effect sizes, figures 1–11" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="210" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s7" value="&lt;b&gt;⑦ Report · slides · defense&lt;/b&gt;&lt;br&gt;limitations · one-page summary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="210" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_s1" target="p1_s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_s2" target="p1_s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_s3" target="p1_s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_s4" target="p1_s5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_s5" target="p1_s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_s6" target="p1_s7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_src" target="p1_s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_src" target="p1_s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;" edge="1" parent="1" source="p1_pred" target="p1_s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_q1" value="&lt;b&gt;make_sample.py&lt;/b&gt;&lt;br&gt;100 comments: 25 per group&lt;br&gt;10 blocks of 10 · seed 42" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="190" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_q2" value="&lt;b&gt;10 Google Forms&lt;/b&gt;&lt;br&gt;posted in small batches&lt;br&gt;≥5 valid raters per comment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="270" y="420" width="190" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_q3" value="&lt;b&gt;Panel scores&lt;/b&gt;&lt;br&gt;vote share per group&lt;br&gt;panel_grupa · panel_soglasnost" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="500" y="420" width="190" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_q4" value="&lt;b&gt;panel.py&lt;/b&gt;&lt;br&gt;reliability (κ / α) + bootstrap CIs&lt;br&gt;V1 · V2 · V3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="730" y="420" width="190" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_q1" target="p1_q2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_q2" target="p1_q3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_q3" target="p1_q4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e13" value="comments.csv" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_s1" target="p1_q1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_q4" target="p1_s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e15" value="model scores" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;" edge="1" parent="1" source="p1_s5" target="p1_q4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg0" value="Data / file" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg1" value="Code / process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="230" y="580" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg2" value="Output / result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="420" y="580" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg3" value="Human step" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="610" y="580" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg4" value="Rule / must-do" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="800" y="580" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_r1" value="&lt;b&gt;Leakage rule:&lt;/b&gt; a comment is never scored by a model that was trained on it" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="645" width="500" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_r2" value="&lt;b&gt;Predictions first:&lt;/b&gt; write them down before running any test or opening any response" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="580" y="645" width="500" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_r3" value="&lt;b&gt;Careful wording:&lt;/b&gt; associations, never causes · &lt;b&gt;AI is a tool:&lt;/b&gt; you explain every line" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="645" width="500" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="2. Data and variables" id="page2">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="780" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p2_title" value="Data: from raw rater rows to one master table" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="40" y="15" width="1000" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_raw" value="&lt;b&gt;RAW: goemotions_1/2/3.csv&lt;/b&gt;&lt;br&gt;one row per rater per comment (~211k rows)&lt;br&gt;text · id · author · subreddit · link_id · parent_id · created_utc · rater_id · 28 binary emotions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="320" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_simp" value="&lt;b&gt;SIMPLIFIED: train / dev / test .tsv&lt;/b&gt;&lt;br&gt;43,410 / 5,426 / 5,427 comments, no header&lt;br&gt;text · emotion ids · comment id&lt;br&gt;+ emotions.txt, ekman and sentiment mappings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="290" width="320" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_collapse" value="&lt;b&gt;Collapse raw (group by id)&lt;/b&gt;&lt;br&gt;mean of 28 emotion columns = human soft scores&lt;br&gt;n_rater = number of raters&lt;br&gt;soglasnost = highest rater-mean&lt;br&gt;author → salted hash" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="440" y="90" width="300" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_join" value="&lt;b&gt;Join simplified (on id)&lt;/b&gt;&lt;br&gt;agreed labels (28 binary)&lt;br&gt;flag: labeled (~54k) vs unlabeled (~3.7k)&lt;br&gt;split: train / dev / test" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="440" y="290" width="300" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_master" value="&lt;b&gt;comments.csv (master table, ~58k rows)&lt;/b&gt;&lt;br&gt;text · id · author_hash · subreddit · created_utc · n_rater&lt;br&gt;28 rater means · soglasnost · labeled flag · split" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="820" y="190" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_metrics" value="&lt;b&gt;metrics.py&lt;/b&gt;&lt;br&gt;pol, sub (TextBlob) · dol = word count&lt;br&gt;vulg = share of lexicon words · vulg_any = at least one" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="820" y="380" width="320" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_vars" value="&lt;b&gt;Variables (Macedonian terms)&lt;/b&gt;&lt;br&gt;pol: polarity, −1 to 1&lt;br&gt;sub: subjectivity, 0 to 1&lt;br&gt;dol: length in words&lt;br&gt;vulg: vulgarity, 0 to 1&lt;br&gt;vulg_any: any profanity, 0/1&lt;br&gt;glavna_emocija: dominant emotion (idxmax of model scores)&lt;br&gt;uverenost: model confidence (top score)&lt;br&gt;razlika: margin (top minus second)&lt;br&gt;grupa: positive / negative / ambiguous / neutral&lt;br&gt;soglasnost: human agreement (max rater-mean)&lt;br&gt;n_rater: raters per comment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=11;align=left;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="90" width="420" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_priv" value="&lt;b&gt;Privacy:&lt;/b&gt; usernames are hashed or dropped; never publish them or quote identifying comments. Some comments contain offensive language (add a content note)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="520" width="700" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_why" value="&lt;b&gt;Why the ~3.7k unlabeled comments matter:&lt;/b&gt; the simplified files keep only comments raters agreed on. The left-out ones are where humans disagreed; dropping them would bias H5 (human ambiguity)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="620" width="700" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p2_raw" target="p2_collapse">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p2_simp" target="p2_join">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p2_collapse" target="p2_join">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p2_join" target="p2_master">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p2_master" target="p2_metrics">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="3. Model and leakage rule" id="page3">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="860" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p3_title" value="Model: train, evaluate, then score without leakage" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="40" y="15" width="1000" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_tr" value="&lt;b&gt;train.tsv&lt;/b&gt;&lt;br&gt;43,410 comments" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m1" value="&lt;b&gt;TF-IDF + one-vs-rest Logistic Regression&lt;/b&gt;&lt;br&gt;predict_proba = 0–1 score per emotion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="260" y="90" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m2" value="&lt;b&gt;Tune on dev.tsv&lt;/b&gt;&lt;br&gt;C ∈ {0.5, 1, 2, 5} · ngrams (1,1) or (1,2)&lt;br&gt;one decision threshold" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="80" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m3" value="&lt;b&gt;Evaluate ONCE on test.tsv&lt;/b&gt;&lt;br&gt;macro-F1 + per-emotion F1&lt;br&gt;at 28 / Ekman / sentiment levels" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="850" y="80" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m4" value="&lt;b&gt;Model report&lt;/b&gt;&lt;br&gt;vs. 2nd model · vs. paper BERT (≈ .46 / .64 / .69)&lt;br&gt;error analysis of 30 mistakes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="80" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_tr" target="p3_m1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_m1" target="p3_m2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_m2" target="p3_m3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_m3" target="p3_m4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_leak" value="&lt;b&gt;LEAKAGE RULE:&lt;/b&gt; a comment is never scored by a model that was trained on it." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="700" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_fb" value="&lt;b&gt;Simple fallback:&lt;/b&gt; analyze only comments never in train.tsv (dev + test + unlabeled, about 14k)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="800" y="240" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_lab" value="&lt;b&gt;Labeled comments&lt;/b&gt;&lt;br&gt;~54k with agreed labels" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_folds" value="5 folds (shuffled, seed 42)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;verticalAlign=top;align=left;spacingLeft=10;spacingTop=3;fontStyle=1;fontColor=#666666;fontSize=12;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="290" y="340" width="640" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_f0" value="&lt;b&gt;Fold 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="310" y="385" width="100" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_f1" value="&lt;b&gt;Fold 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="430" y="385" width="100" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_f2" value="&lt;b&gt;Fold 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="385" width="100" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_f3" value="&lt;b&gt;Fold 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="670" y="385" width="100" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_f4" value="&lt;b&gt;Fold 5&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="790" y="385" width="100" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_each" value="&lt;b&gt;For each fold k:&lt;/b&gt; fit TF-IDF + model on the other 4 folds, then predict fold k (TF-IDF is refit inside each fold)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="290" y="500" width="640" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_unl" value="&lt;b&gt;Unlabeled comments&lt;/b&gt;&lt;br&gt;~3.7k (no agreed label)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="640" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_avg" value="&lt;b&gt;Score with every fold model, then average&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="290" y="640" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_oof" value="&lt;b&gt;Out-of-fold score table&lt;/b&gt;&lt;br&gt;28 probabilities per comment, all ~58k" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="650" y="640" width="280" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_san" value="&lt;b&gt;Sanity check:&lt;/b&gt; out-of-fold macro-F1 should be close to the test macro-F1. Much higher means a leakage bug." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="340" width="400" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_der" value="&lt;b&gt;Derived columns&lt;/b&gt;&lt;br&gt;glavna_emocija = idxmax of scores&lt;br&gt;uverenost = top score · razlika = top − second&lt;br&gt;grupa = sentiment mapping" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="520" width="400" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_note" value="Don't use class_weight='balanced' for the scoring model: it distorts the probabilities (you may test it for F1 and mention it)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="680" width="400" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_lab" target="p3_folds">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_folds" target="p3_each">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_each" target="p3_avg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_unl" target="p3_avg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_avg" target="p3_oof">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_each" target="p3_oof">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_oof" target="p3_der">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;" edge="1" parent="1" source="p3_each" target="p3_san">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e13" value="chosen settings" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;" edge="1" parent="1" source="p3_m2" target="p3_each">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="4. Hypotheses to tests to figures" id="page4">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p4_title" value="Hypotheses, tests, and figures" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="40" y="15" width="1000" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_h1" value="Question" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="40" y="65" width="400" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_h2" value="Variables → test + effect size" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="520" y="65" width="500" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_h3" value="Figure" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="65" width="300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_q0" value="&lt;b&gt;H1 · Profanity and valence&lt;/b&gt;&lt;br&gt;Does vulgarity go with negative emotion, and also with high-energy positive?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="420" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_t0" value="vulg, vulg_any vs grupa and 28 scores&lt;br&gt;Kruskal-Wallis (ε²) · chi-square (Cramér's V) · Spearman (ρ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="100" width="520" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_f0" value="fig02 vulgarity by group&lt;br&gt;fig03 Spearman heatmap" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="100" width="300" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_q0" target="p4_t0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_t0" target="p4_f0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_q1" value="&lt;b&gt;H2 · Length and disclosure&lt;/b&gt;&lt;br&gt;Are comments with negative emotions longer than positive or neutral ones?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="195" width="420" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_t1" value="dol vs grupa, control for subreddit&lt;br&gt;Kruskal-Wallis (ε²) + regression log(dol) ~ grupa + subreddit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="195" width="520" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_f1" value="fig04 box plot of dol by grupa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="195" width="300" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_q1" target="p4_t1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_t1" target="p4_f1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_q2" value="&lt;b&gt;H3 · Subreddit differences&lt;/b&gt;&lt;br&gt;Do some subreddits skew toward strong emotions, others toward neutral?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="290" width="420" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_t2" value="subreddit × grupa (≥200 comments each)&lt;br&gt;chi-square (Cramér's V)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="290" width="520" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_f2" value="fig05 emotion groups by subreddit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="290" width="300" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_q2" target="p4_t2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_t2" target="p4_f2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_q3" value="&lt;b&gt;H4 · Neutrality baseline&lt;/b&gt;&lt;br&gt;How large is the neutral share compared with all other emotions combined?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="385" width="420" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_t3" value="neutral share: dominant label and score mass, model and human&lt;br&gt;descriptive, compare the four numbers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="385" width="520" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_f3" value="fig01 glavna_emocija counts, model vs human" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="385" width="300" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_q3" target="p4_t3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_t3" target="p4_f3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_q4" value="&lt;b&gt;H5 · Humans vs model (signature)&lt;/b&gt;&lt;br&gt;Where do humans disagree, and does the model struggle in the same places?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="420" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_t4" value="soglasnost vs uverenost · per-emotion F1 vs mean soglasnost&lt;br&gt;Spearman (ρ), check n_rater" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="480" width="520" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_f4" value="fig06 hexbin · fig07 F1 vs agreement" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="480" width="300" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_q4" target="p4_t4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_t4" target="p4_f4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_q5" value="&lt;b&gt;V1 · Panel: model as good as an extra human?&lt;/b&gt;&lt;br&gt;Does the model agree with the panel as well as one person does?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="575" width="420" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_t5" value="model vs panel majority · one person vs others · original raters vs panel&lt;br&gt;accuracy, Cohen's κ, bootstrap CI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="575" width="520" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_f5" value="fig10 agreement with the panel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="575" width="300" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_q5" target="p4_t5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_t5" target="p4_f5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_q6" value="&lt;b&gt;V2 · Panel vs original raters&lt;/b&gt;&lt;br&gt;Do my raters and the original raters perceive emotion alike?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="670" width="420" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_t6" value="panel majority vs original rater majority, group level&lt;br&gt;κ + bootstrap CI, where they differ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="670" width="520" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_f6" value="fig10 agreement with the panel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="670" width="300" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_q6" target="p4_t6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_t6" target="p4_f6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_q7" value="&lt;b&gt;V3 · Does ambiguity replicate?&lt;/b&gt;&lt;br&gt;Do comments that split the original raters also split my panel?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="765" width="420" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_t7" value="panel soglasnost vs original soglasnost (100 comments)&lt;br&gt;Spearman (ρ) + bootstrap CI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="765" width="520" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_f7" value="fig11 ambiguity replication" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="765" width="300" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_q7" target="p4_t7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_e16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p4_t7" target="p4_f7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_ext" value="&lt;b&gt;Extensions (only if everything else is done):&lt;/b&gt; E1 pseudo-objectivity (sub near 0 vs disapproval) · E2 pol vs sub (fig09) · E3 time of day (exploratory)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="870" width="1010" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_pr" value="&lt;b&gt;Predictions for all of these are committed BEFORE running any test.&lt;/b&gt; Effect sizes always go with p-values." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="870" width="300" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="5. Questionnaire panel study" id="page5">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p5_title" value="Human panel study: from sample to V1–V3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="40" y="15" width="1000" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a1" value="&lt;b&gt;comments.csv&lt;/b&gt;&lt;br&gt;master table from step B1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a2" value="&lt;b&gt;make_sample.py&lt;/b&gt;&lt;br&gt;100 comments, 25 per group, 10 blocks of 10, seed 42" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="370" y="100" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a3" value="&lt;b&gt;You review all 100&lt;/b&gt;&lt;br&gt;drop problem comments (--exclude), redraw" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="700" y="100" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a4" value="&lt;b&gt;Build 10 forms&lt;/b&gt;&lt;br&gt;build_forms.gs or by hand · consent 18+ · attention check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="100" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a5" value="&lt;b&gt;Teacher / school OK&lt;/b&gt;&lt;br&gt;consent rules, minors, posting in public communities" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="290" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a6" value="&lt;b&gt;Pilot with a few people&lt;/b&gt;&lt;br&gt;fix wording · pilot answers are excluded" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="700" y="290" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a7" value="&lt;b&gt;Post in small batches&lt;/b&gt;&lt;br&gt;psych subreddits, Discord, friends · ask mods first · spread each block across communities" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="370" y="290" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a8" value="&lt;b&gt;Responses spreadsheet&lt;/b&gt;&lt;br&gt;one tab per form · stop a block at ~8 valid raters" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="290" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a9" value="&lt;b&gt;Clean responses&lt;/b&gt;&lt;br&gt;drop failed attention check · ignore &quot;I can't tell&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a10" value="&lt;b&gt;Panel scores&lt;/b&gt;&lt;br&gt;vote share per group · panel_grupa · panel_soglasnost" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="370" y="480" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a11" value="&lt;b&gt;Reliability&lt;/b&gt;&lt;br&gt;Fleiss κ or Krippendorff α · bootstrap 95% CIs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="700" y="480" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_a12" value="&lt;b&gt;V1 · V2 · V3&lt;/b&gt;&lt;br&gt;vs model and vs original raters (fig10, fig11)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="480" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a1" target="p5_a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a2" target="p5_a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a3" target="p5_a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a4" target="p5_a5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a5" target="p5_a6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a6" target="p5_a7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a7" target="p5_a8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a8" target="p5_a9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a9" target="p5_a10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a10" target="p5_a11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_a11" target="p5_a12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_n0" value="&lt;b&gt;Predictions first:&lt;/b&gt; commit V1–V3 predictions before opening any response" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="100" width="270" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_n1" value="&lt;b&gt;At least 5 valid raters per comment&lt;/b&gt; (aim for 8); shrink the comment list, never the raters" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="200" width="270" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_n2" value="&lt;b&gt;18+ only, anonymous,&lt;/b&gt; no emails, no sign-in required" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="300" width="270" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_n3" value="&lt;b&gt;Real people only:&lt;/b&gt; never use AI to fill in or generate responses" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="400" width="270" height="85" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="6. Stages and milestones" id="page6">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="860" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p6_title" value="Stages and milestones (no fixed durations: a step is done when its test passes)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="40" y="15" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_lane0" value="PLANNING (P1–P4)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;verticalAlign=top;align=left;spacingLeft=10;spacingTop=3;fontStyle=1;fontColor=#666666;fontSize=12;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="20" y="70" width="1470" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_P1" value="&lt;b&gt;P1 · Set up and explore&lt;/b&gt;&lt;br&gt;10 data questions · paper notes · basics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="105" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_P2" value="&lt;b&gt;P2 · Psychology + hypotheses&lt;/b&gt;&lt;br&gt;reading notes · definitions · predictions committed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="290" y="105" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_P3" value="&lt;b&gt;P3 · Prototype&lt;/b&gt;&lt;br&gt;2,000 comments end to end · TextBlob tests · lexicon" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="540" y="105" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_P4" value="&lt;b&gt;P4 · Finalize&lt;/b&gt;&lt;br&gt;teacher rubric · questionnaire permission · repo skeleton" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="790" y="105" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_G0" value="&lt;b&gt;G0 · Go / No-go&lt;/b&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="105" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_P1" target="p6_P2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_P2" target="p6_P3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_P3" target="p6_P4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_P4" target="p6_G0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_lane1" value="BUILD A · data and model" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;verticalAlign=top;align=left;spacingLeft=10;spacingTop=3;fontStyle=1;fontColor=#666666;fontSize=12;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="20" y="235" width="1470" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B1" value="&lt;b&gt;B1 · data.py&lt;/b&gt;&lt;br&gt;collapse · hash · join · panel sample" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="270" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B2" value="&lt;b&gt;B2 · metrics.py&lt;/b&gt;&lt;br&gt;pol, sub, dol, vulg · build + pilot questionnaire" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="790" y="270" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B3" value="&lt;b&gt;B3 · Baseline model&lt;/b&gt;&lt;br&gt;tune on dev · test once · launch questionnaire" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="540" y="270" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B4" value="&lt;b&gt;B4 · Comparison model&lt;/b&gt;&lt;br&gt;error analysis · methods draft" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="290" y="270" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_M1" value="&lt;b&gt;M1 · Model report&lt;/b&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="270" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B1" target="p6_B2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B2" target="p6_B3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B3" target="p6_B4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B4" target="p6_M1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_G0" target="p6_B1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_lane2" value="BUILD B · scoring and analysis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;verticalAlign=top;align=left;spacingLeft=10;spacingTop=3;fontStyle=1;fontColor=#666666;fontSize=12;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="20" y="400" width="1470" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B5" value="&lt;b&gt;B5 · Out-of-fold scoring&lt;/b&gt;&lt;br&gt;derived columns · output CSV · sanity check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="435" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B6" value="&lt;b&gt;B6 · H1 + H2&lt;/b&gt;&lt;br&gt;tests · figures · compare with predictions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="290" y="435" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B7" value="&lt;b&gt;B7 · H3 + H4&lt;/b&gt;&lt;br&gt;tests · figures" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="540" y="435" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B8" value="&lt;b&gt;B8 · H5 + panel analysis&lt;/b&gt;&lt;br&gt;V1–V3 · close the questionnaire" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="790" y="435" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_M2" value="&lt;b&gt;M2 · All results done&lt;/b&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="435" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B5" target="p6_B6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B6" target="p6_B7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B7" target="p6_B8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B8" target="p6_M2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_M1" target="p6_B5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_lane3" value="BUILD C · writing and defense" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;verticalAlign=top;align=left;spacingLeft=10;spacingTop=3;fontStyle=1;fontColor=#666666;fontSize=12;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="20" y="565" width="1470" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B9" value="&lt;b&gt;B9 · Writing 1&lt;/b&gt;&lt;br&gt;intro · background · data · methods" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="600" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B10" value="&lt;b&gt;B10 · Writing 2&lt;/b&gt;&lt;br&gt;results · discussion · limitations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="790" y="600" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B11" value="&lt;b&gt;B11 · Revise and package&lt;/b&gt;&lt;br&gt;feedback · cleanup · fresh-run test · README" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="540" y="600" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_B12" value="&lt;b&gt;B12 · Defense&lt;/b&gt;&lt;br&gt;rehearse · Q&amp;amp;A · submit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="290" y="600" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_M3" value="&lt;b&gt;M3 · Draft (after B10)&lt;/b&gt;&lt;br&gt;M4 · Submitted (after B12)" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B9" target="p6_B10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B10" target="p6_B11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B11" target="p6_B12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_B12" target="p6_M3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_e19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p6_M2" target="p6_B9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_cut" value="&lt;b&gt;If you fall behind, cut in this order:&lt;/b&gt; extensions → H2 regression and second-model depth → H3 → simple scoring fallback. &lt;b&gt;Never cut:&lt;/b&gt; core pipeline, H1, H2, H5, the human panel (shrink the comment list, not the raters), limitations, the leakage rule." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="740" width="1450" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
