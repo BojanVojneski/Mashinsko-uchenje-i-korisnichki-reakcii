@@ -130,6 +130,8 @@ def labels_to_matrix(
             except ValueError as exc:
                 raise ValueError(f"Invalid emotion ID list at row {row_index}: {value!r}") from exc
         elif isinstance(value, (int, np.integer, float, np.floating)):
+            if isinstance(value, (float, np.floating)) and not float(value).is_integer():
+                raise ValueError(f"Emotion ID at row {row_index} must be an integer: {value!r}")
             indices = [int(value)]
         else:
             try:

@@ -46,6 +46,8 @@ def test_labels_to_matrix_handles_ids_and_rejects_out_of_range_values():
     assert actual.tolist() == [[1, 0, 1], [0, 1, 0], [0, 0, 0], [0, 0, 0]]
     with pytest.raises(ValueError, match="outside the valid range"):
         labels_to_matrix(["3"], ["anger", "joy", "neutral"])
+    with pytest.raises(ValueError, match="must be an integer"):
+        labels_to_matrix([1.5], ["anger", "joy", "neutral"])
 
 
 def test_load_split_preserves_text_and_prefixes_label_columns(tmp_path):
